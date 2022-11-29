@@ -1,11 +1,12 @@
+import constant.SQL.Info;
 import java.sql.*;
 
-public class Main {
+public class Application {
     public static void main(String arg[]) {
         String query = "SELECT * FROM Book";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(SQLInfo.JDBC_URL.getValue(), SQLInfo.SQL_ID.getValue(), SQLInfo.SQL_PASSWORD.getValue());
+            Connection connection = DriverManager.getConnection(Info.JDBC_URL, Info.SQL_ID, Info.SQL_PASSWORD);
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
@@ -14,7 +15,7 @@ public class Main {
             }
             connection.close();
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
